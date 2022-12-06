@@ -8,7 +8,8 @@ namespace ____
 
             string[] suits = { "Klöver", "Spader", "Knäckt", "Hjärter" };
 
-            string vin;
+            string[] winner = new string[1];
+
             Random random = new Random();
 
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -26,9 +27,10 @@ namespace ____
             string rndmsuits = suits[random.Next(0, 4)];
             string rndmsuits2 = suits[random.Next(0, 4)];
 
-            //start 
+             
             try
             {
+                //Start medelande
                 Console.WriteLine("Välkommen till Black jack");
                 Console.WriteLine("1. Spela Black Jack");
                 Console.WriteLine("2. See förra vinnaren (WIP)");
@@ -47,7 +49,7 @@ namespace ____
                         break;
                     case 3:
                         spelregler = true;
-                        avslutning = false;
+                        avslutning = true;
                         break;
                     case 4:
                         avslutning = true;
@@ -91,6 +93,13 @@ namespace ____
                 break;
             }
 
+            //Gör så att om man får två ess (11) så blir ett av essen värt 1 
+            //Denna if funkar bara på första draget ej alla
+            int round1 = rndmvalue + rndmvalue2;
+            if (round1 >= 22)
+            {
+                rndmvalue2 = 1;
+            }
 
             //spelarens första två kort
             Console.WriteLine($"Dina startkort kommer att vara {rndmsuits} {rndmvalue} och {rndmsuits2} {rndmvalue2}");
@@ -99,7 +108,6 @@ namespace ____
             string val = Console.ReadLine();
             val.ToLower();
 
-
             if (val == "y")
             {
                 sant = true;
@@ -107,15 +115,13 @@ namespace ____
 
             if (val == "n")
             {
-                sant = false;
+                avslutning = false;
             }
 
             int startplayer = rndmvalue + rndmvalue2;
             int endplayer = startplayer;
 
-
             //Spelarens While loop
-
             while (sant)
             {
                 int rndmvalue5 = number[random.Next(0, 11)];
@@ -131,10 +137,19 @@ namespace ____
                     endplayer = endplayer + rndmvalue5;
                 }
 
+
+                //inför 11 reglen i main loopen
+               /* if(rndmvalue5==11 && endplayer > 21)
+                {
+                    rndmvalue5= 1;  
+                }*/
+
+
                 if (endplayer > 21)
                 {
                     Console.WriteLine("Du har förlorat");
                     Console.WriteLine($"Du fick {endplayer} poäng");
+                    avslutning= true;
                     break;
                 }
 
@@ -143,7 +158,7 @@ namespace ____
                     Console.WriteLine("Grattis du har vunnit");
                     Console.WriteLine($"Du fick {endplayer} poäng");
                     Console.Write("Skriv in ditt namn: ");
-                    vin = Console.ReadLine();
+                    avslutning = true;
                     break;
                 }
 
@@ -170,6 +185,18 @@ namespace ____
                 int PCstart = rndmvalue3 + rndmvalue4;
                 int PCend = rndmvalue5 + PCstart;
 
+
+                //Infogar reglen med ess(11)
+               /* if (PCstart > 21)
+                {
+                    rndmvalue5 = 1;
+                }
+                if(PCend > 21 && rndmvalue5 == 11)
+                {
+                    rndmvalue5 = 1;
+                }*/
+
+
                 if (PCend >= 17)
                 {
                     if (endplayer > PCend)
@@ -178,6 +205,7 @@ namespace ____
                         Console.WriteLine($"Datorn fick {PCend} poäng");
                         Console.WriteLine($"Du fick {endplayer} poäng");
                         Console.Write("Skriv in ditt namn: ");
+                        avslutning = true;
                         break;
                     }
 
@@ -186,6 +214,7 @@ namespace ____
                         Console.WriteLine("Datron vann");
                         Console.WriteLine($"Datorn fick {PCend} poäng");
                         Console.WriteLine($"Du fick {endplayer} poäng");
+                        avslutning = true;
                         break;
                     }
 
@@ -194,7 +223,8 @@ namespace ____
                         Console.WriteLine("Datron vann");
                         Console.WriteLine($"Datorn fick {PCend} poäng");
                         Console.WriteLine($"Du fick {endplayer} poäng");
-
+                        avslutning = true;
+                        break;
                     }
 
                     if (PCend > 21)
@@ -203,6 +233,8 @@ namespace ____
                         Console.WriteLine($"Datorn fick {PCend} poäng");
                         Console.WriteLine($"Du fick {endplayer} poäng");
                         Console.Write("Skriv in ditt namn: ");
+                        avslutning = true;
+                        break;
                     }
                 }
 

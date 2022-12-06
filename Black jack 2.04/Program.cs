@@ -1,4 +1,4 @@
-﻿namespace ____
+namespace ____
 {
     class Program
     {
@@ -8,8 +8,7 @@
 
             string[] suits = { "Klöver", "Spader", "Knäckt", "Hjärter" };
 
-            string[] winner = new string[1];
-
+            string vin;
             Random random = new Random();
 
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -48,7 +47,7 @@
                         break;
                     case 3:
                         spelregler = true;
-                        avslutning = true;
+                        avslutning = false;
                         break;
                     case 4:
                         avslutning = true;
@@ -92,12 +91,14 @@
                 break;
             }
 
+
             //spelarens första två kort
             Console.WriteLine($"Dina startkort kommer att vara {rndmsuits} {rndmvalue} och {rndmsuits2} {rndmvalue2}");
             Console.WriteLine($"Du kommer nu att ha {rndmvalue + rndmvalue2} poäng");
             Console.WriteLine("Vill du ta ett nytt kort (y/n)");
             string val = Console.ReadLine();
             val.ToLower();
+
 
             if (val == "y")
             {
@@ -106,13 +107,15 @@
 
             if (val == "n")
             {
-                avslutning = false;
+                sant = false;
             }
 
             int startplayer = rndmvalue + rndmvalue2;
             int endplayer = startplayer;
 
+
             //Spelarens While loop
+
             while (sant)
             {
                 int rndmvalue5 = number[random.Next(0, 11)];
@@ -128,7 +131,6 @@
                     endplayer = endplayer + rndmvalue5;
                 }
 
-
                 if (endplayer > 21)
                 {
                     Console.WriteLine("Du har förlorat");
@@ -141,6 +143,7 @@
                     Console.WriteLine("Grattis du har vunnit");
                     Console.WriteLine($"Du fick {endplayer} poäng");
                     Console.Write("Skriv in ditt namn: ");
+                    vin = Console.ReadLine();
                     break;
                 }
 
@@ -191,7 +194,7 @@
                         Console.WriteLine("Datron vann");
                         Console.WriteLine($"Datorn fick {PCend} poäng");
                         Console.WriteLine($"Du fick {endplayer} poäng");
-                        
+
                     }
 
                     if (PCend > 21)

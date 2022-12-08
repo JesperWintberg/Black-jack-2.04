@@ -8,8 +8,6 @@ namespace ____
 
             string[] suits = { "Klöver", "Spader", "Knäckt", "Hjärter" };
 
-           // W I P 
-            string[] winner = new string[1];
 
             Random random = new Random();
 
@@ -32,11 +30,14 @@ namespace ____
             try
             {
                 //Start medelande
-                Console.WriteLine("Välkommen till Black jack");
+                Console.WriteLine("Välkommen till Black jack!");
+                Console.WriteLine("-------------------------");
+                Console.WriteLine();
                 Console.WriteLine("1. Spela Black Jack");
                 Console.WriteLine("2. See förra vinnaren (WIP)");
                 Console.WriteLine("3. Spelets regler");
                 Console.WriteLine("4. Stänga av programet");
+                Console.WriteLine();
                 Console.Write("Skriv här: "); string start = Console.ReadLine();
                 int start2 = int.Parse(start);
                 Console.Clear();
@@ -71,6 +72,8 @@ namespace ____
                 //Avslutnings medelande
                 if (avslutning)
                 {
+                    Console.WriteLine("Spelet avslutas nu!");
+                    Console.WriteLine("------------------");
                     Console.WriteLine();
                     Console.WriteLine("Tack för du har spelat");
                     Console.WriteLine("Ha en bra dag");
@@ -90,10 +93,14 @@ namespace ____
                 // Visar spelregler 
                 while (spelregler)
                 {
+                    Console.WriteLine("Spelregler");
+                    Console.WriteLine("----------");
+                    Console.WriteLine();
                     Console.WriteLine("I Black Jack så är ditt mål att nå 21 poäng eller så nära du bara kan.");
                     Console.WriteLine("Du får inte komma över 21 poäng för du förlorar du");
                     Console.WriteLine("Du kommer börja dra kort när du känner dig klar så kommer datorn att dra sinna kort");
                     Console.WriteLine("Lycka till");
+                    Console.WriteLine();
                     Console.Write("Vill du starta spelet (y/n): "); string val4 = Console.ReadLine();
                     Console.Clear();
 
@@ -172,6 +179,7 @@ namespace ____
 
                     if (endplayer > 21)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine();
                         Console.WriteLine("Du har förlorat");
                         Console.WriteLine($"Du fick {endplayer} poäng");
@@ -181,6 +189,7 @@ namespace ____
 
                     if (endplayer == 21)
                     {
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine();
                         Console.WriteLine("Grattis du har vunnit");
                         Console.WriteLine($"Du fick {endplayer} poäng");
@@ -237,6 +246,7 @@ namespace ____
                     {
                         if (PCend > 21)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine();
                             Console.WriteLine("Grattis du vann");
                             Console.WriteLine($"Datorn fick {PCend} poäng");
@@ -248,8 +258,9 @@ namespace ____
 
                         if (PCend == 21)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine();
-                            Console.WriteLine("Datron vann");
+                            Console.WriteLine("Du har förlorat");
                             Console.WriteLine($"Datorn fick {PCend} poäng");
                             Console.WriteLine($"Du fick {endplayer} poäng");
                             avslutning = true;
@@ -258,6 +269,7 @@ namespace ____
 
                         else if (endplayer > PCend)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine();
                             Console.WriteLine("Grattis du vann");
                             Console.WriteLine($"Datorn fick {PCend} poäng");
@@ -269,8 +281,9 @@ namespace ____
 
                         else if (PCend > endplayer)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine();
-                            Console.WriteLine("Datron vann");
+                            Console.WriteLine("Du har förlorat");
                             Console.WriteLine($"Datorn fick {PCend} poäng");
                             Console.WriteLine($"Du fick {endplayer} poäng");
                             avslutning = true;

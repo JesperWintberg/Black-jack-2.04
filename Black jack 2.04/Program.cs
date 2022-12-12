@@ -20,6 +20,9 @@ namespace ____
             //bool som stänger av spelet
             bool avslutning = false;
 
+            //ska visa förra vinnaren
+            string vinnare = "";
+
             int rndmvalue = number[random.Next(0, 11)];
             int rndmvalue2 = number[random.Next(0, 11)];
 
@@ -48,6 +51,7 @@ namespace ____
                         sant = true;
                         break;
                     case 2:
+                        Console.WriteLine(vinnare);
                         break;
                     case 3:
                         spelregler = true;
@@ -144,7 +148,7 @@ namespace ____
 
             if (val == "n")
             {
-                avslutning = false;
+                sant=false;
             }
 
 
@@ -251,7 +255,7 @@ namespace ____
                             Console.WriteLine("Grattis du vann");
                             Console.WriteLine($"Datorn fick {PCend} poäng");
                             Console.WriteLine($"Du fick {endplayer} poäng");
-                            Console.Write("Skriv in ditt namn: ");
+                            Console.Write("Skriv in ditt namn: "); 
                             avslutning = true;
                             break;
                         }
@@ -274,7 +278,7 @@ namespace ____
                             Console.WriteLine("Grattis du vann");
                             Console.WriteLine($"Datorn fick {PCend} poäng");
                             Console.WriteLine($"Du fick {endplayer} poäng");
-                            Console.Write("Skriv in ditt namn: ");
+                            Console.Write("Skriv in ditt namn: "); 
                             avslutning = true;
                             break;
                         }
